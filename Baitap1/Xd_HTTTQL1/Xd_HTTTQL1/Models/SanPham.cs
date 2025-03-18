@@ -9,15 +9,16 @@ namespace Xd_HTTTQL1.Models
     public class SanPham
     {
         public string TenSanPham { get; set; }
-        public int DonGia { get; set; }
-        public int SoLuong { get; set; }
-        public int ThanhTien => DonGia * SoLuong;
+        public decimal DonGia { get; set; }
+        public decimal SoLuong { get; set; }
+        public decimal ThanhTien => DonGia * SoLuong;
 
-        public SanPham(string tenSanPham, int donGia, int soLuong)
+        public SanPham(string tenSanPham, decimal donGia, decimal soLuong)
         {
             TenSanPham = tenSanPham;
             DonGia = donGia;
             SoLuong = soLuong;
         }
     }
+
 }

@@ -101,7 +101,7 @@
             NgayLapHoaDonDate.Name = "NgayLapHoaDonDate";
             NgayLapHoaDonDate.Size = new Size(124, 30);
             NgayLapHoaDonDate.TabIndex = 12;
-            NgayLapHoaDonDate.ValueChanged += NgayLapHoaDonDate_ValueChanged;
+     
             // 
             // DiaChiBox
             // 
@@ -109,7 +109,7 @@
             DiaChiBox.Name = "DiaChiBox";
             DiaChiBox.Size = new Size(220, 30);
             DiaChiBox.TabIndex = 11;
-            DiaChiBox.TextChanged += DiaChiBox_TextChanged;
+            
             // 
             // DienThoaiBox
             // 
@@ -117,7 +117,6 @@
             DienThoaiBox.Name = "DienThoaiBox";
             DienThoaiBox.Size = new Size(175, 30);
             DienThoaiBox.TabIndex = 10;
-            DienThoaiBox.TextChanged += DienThoaiBox_TextChanged;
             // 
             // KhachHangBox
             // 
@@ -125,7 +124,7 @@
             KhachHangBox.Name = "KhachHangBox";
             KhachHangBox.Size = new Size(232, 30);
             KhachHangBox.TabIndex = 9;
-            KhachHangBox.TextChanged += KhachHangBox_TextChanged;
+            
             // 
             // NhanVienBox
             // 
@@ -133,7 +132,7 @@
             NhanVienBox.Name = "NhanVienBox";
             NhanVienBox.Size = new Size(127, 30);
             NhanVienBox.TabIndex = 8;
-            NhanVienBox.TextChanged += NhanVienBox_TextChanged;
+    
             // 
             // SoHoaDonBox
             // 
@@ -141,7 +140,7 @@
             SoHoaDonBox.Name = "SoHoaDonBox";
             SoHoaDonBox.Size = new Size(183, 30);
             SoHoaDonBox.TabIndex = 6;
-            SoHoaDonBox.TextChanged += SoHoaDonBox_TextChanged;
+           
             // 
             // label7
             // 
@@ -268,7 +267,7 @@
             SanPhamBox.Name = "SanPhamBox";
             SanPhamBox.Size = new Size(199, 30);
             SanPhamBox.TabIndex = 3;
-            SanPhamBox.TextChanged += SanPhamBox_TextChanged;
+         
             // 
             // label10
             // 
@@ -305,7 +304,7 @@
             DonHangTable.RowHeadersWidth = 51;
             DonHangTable.Size = new Size(366, 187);
             DonHangTable.TabIndex = 3;
-            DonHangTable.CellContentClick += DonHangTable_CellContentClick;
+ 
             // 
             // label11
             // 

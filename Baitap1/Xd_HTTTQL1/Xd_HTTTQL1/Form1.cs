@@ -29,23 +29,20 @@ namespace Xd_HTTTQL1
             DonHangTable.CellClick += new DataGridViewCellEventHandler(this.DonHangTable_CellClick);
         }
 
-        // Form load event
+        // Load form 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Initialize invoice and product list
+            // Load hoa don va danh sach san pham
             hoaDon = new Models.HoaDon();
             danhSachSanPham = new List<Models.SanPham>();
 
-            // Set up DataGridView
             SetupDataGridView();
 
-            // Set default date to today
             NgayLapHoaDonDate.Value = DateTime.Now;
         }
 
         private void SetupDataGridView()
         {
-            // Assuming DonHangTable is your DataGridView
             DonHangTable.Columns.Clear();
             DonHangTable.Columns.Add("STT", "STT");
             DonHangTable.Columns.Add("TenSanPham", "Sản phẩm");
@@ -53,50 +50,16 @@ namespace Xd_HTTTQL1
             DonHangTable.Columns.Add("SoLuong", "Số lượng");
             DonHangTable.Columns.Add("ThanhTien", "Thành tiền");
 
-            // Set column properties
             DonHangTable.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
             DonHangTable.Columns["DonGia"].DefaultCellStyle.Format = "N0";
         }
 
-        private void SoHoaDonBox_TextChanged(object sender, EventArgs e)
-        {
-            // This can be left empty or you can add validation if needed
-        }
-
-        private void NgayLapHoaDonDate_ValueChanged(object sender, EventArgs e)
-        {
-            // This can be left empty or you can add date-related logic if needed
-        }
-
-        private void NhanVienBox_TextChanged(object sender, EventArgs e)
-        {
-            // This can be left empty or you can add validation if needed
-        }
-
-        private void KhachHangBox_TextChanged(object sender, EventArgs e)
-        {
-            // This can be left empty or you can add validation if needed
-        }
-
-        private void DienThoaiBox_TextChanged(object sender, EventArgs e)
-        {
-            // This can be left empty or you can add phone number validation if needed
-        }
-
-        private void DiaChiBox_TextChanged(object sender, EventArgs e)
-        {
-            // This can be left empty or you can add validation if needed
-        }
-
-        private void SanPhamBox_TextChanged(object sender, EventArgs e)
-        {
-            // This can be left empty or you can add validation if needed
-        }
+      
 
         private void DonGiaBox_TextChanged(object sender, EventArgs e)
         {
-            // You can add numeric validation here if needed
-            if (!string.IsNullOrEmpty(DonGiaBox.Text) && !int.TryParse(DonGiaBox.Text, out _))
+            // Ham kiem tra du lieu nhap vao
+            if (!string.IsNullOrEmpty(DonGiaBox.Text) && !decimal.TryParse(DonGiaBox.Text, out _))
             {
                 MessageBox.Show("Đơn giá phải là số!");
                 DonGiaBox.Text = "";
@@ -105,8 +68,8 @@ namespace Xd_HTTTQL1
 
         private void SoLuongBox_TextChanged(object sender, EventArgs e)
         {
-            // You can add numeric validation here if needed
-            if (!string.IsNullOrEmpty(SoLuongBox.Text) && !int.TryParse(SoLuongBox.Text, out _))
+            // Nhu tren
+            if (!string.IsNullOrEmpty(SoLuongBox.Text) && !decimal.TryParse(SoLuongBox.Text, out _))
             {
                 MessageBox.Show("Số lượng phải là số!");
                 SoLuongBox.Text = "";
@@ -117,7 +80,7 @@ namespace Xd_HTTTQL1
         {
             try
             {
-                // Validate inputs
+                // Check Input
                 if (string.IsNullOrWhiteSpace(SanPhamBox.Text))
                 {
                     MessageBox.Show("Vui lòng nhập tên sản phẩm!");
@@ -125,30 +88,28 @@ namespace Xd_HTTTQL1
                     return;
                 }
 
-                if (!int.TryParse(DonGiaBox.Text, out int donGia) || donGia <= 0)
+                if (!long.TryParse(DonGiaBox.Text, out long donGia) || donGia <= 0)
                 {
                     MessageBox.Show("Đơn giá không hợp lệ!");
                     DonGiaBox.Focus();
                     return;
                 }
 
-                if (!int.TryParse(SoLuongBox.Text, out int soLuong) || soLuong <= 0)
+                if (!long.TryParse(SoLuongBox.Text, out long soLuong) || soLuong <= 0)
                 {
                     MessageBox.Show("Số lượng không hợp lệ!");
                     SoLuongBox.Focus();
                     return;
                 }
 
-                // Create new product
+                
                 Models.SanPham sanPham = new Models.SanPham(SanPhamBox.Text, donGia, soLuong);
 
-                // Add to list
+            
                 danhSachSanPham.Add(sanPham);
-
-                // Update DataGridView
+       
                 RefreshDataGridView();
 
-                // Clear input fields
                 ClearProductInputs();
             }
             catch (Exception ex)
@@ -161,16 +122,12 @@ namespace Xd_HTTTQL1
         {
             if (indexSelected >= 0 && indexSelected < danhSachSanPham.Count)
             {
-                // Remove selected product
                 danhSachSanPham.RemoveAt(indexSelected);
 
-                // Update DataGridView
                 RefreshDataGridView();
 
-                // Clear input fields
                 ClearProductInputs();
 
-                // Reset selected index
                 indexSelected = -1;
             }
             else
@@ -185,7 +142,7 @@ namespace Xd_HTTTQL1
             {
                 try
                 {
-                    // Validate inputs
+                    // Check input
                     if (string.IsNullOrWhiteSpace(SanPhamBox.Text))
                     {
                         MessageBox.Show("Vui lòng nhập tên sản phẩm!");
@@ -193,31 +150,27 @@ namespace Xd_HTTTQL1
                         return;
                     }
 
-                    if (!int.TryParse(DonGiaBox.Text, out int donGia) || donGia <= 0)
+                    if (!long.TryParse(DonGiaBox.Text, out long donGia) || donGia <= 0)
                     {
                         MessageBox.Show("Đơn giá không hợp lệ!");
                         DonGiaBox.Focus();
                         return;
                     }
 
-                    if (!int.TryParse(SoLuongBox.Text, out int soLuong) || soLuong <= 0)
+                    if (!long.TryParse(SoLuongBox.Text, out long soLuong) || soLuong <= 0)
                     {
                         MessageBox.Show("Số lượng không hợp lệ!");
                         SoLuongBox.Focus();
                         return;
                     }
 
-                    // Update product
                     Models.SanPham sanPham = new Models.SanPham(SanPhamBox.Text, donGia, soLuong);
                     danhSachSanPham[indexSelected] = sanPham;
 
-                    // Update DataGridView
                     RefreshDataGridView();
 
-                    // Clear input fields
                     ClearProductInputs();
 
-                    // Reset selected index
                     indexSelected = -1;
                 }
                 catch (Exception ex)
@@ -235,7 +188,7 @@ namespace Xd_HTTTQL1
         {
             try
             {
-                // Validate invoice information
+                // Xac nhan du lieu cua hoa don
                 if (string.IsNullOrWhiteSpace(SoHoaDonBox.Text))
                 {
                     MessageBox.Show("Vui lòng nhập số hóa đơn!");
@@ -263,7 +216,6 @@ namespace Xd_HTTTQL1
                     return;
                 }
 
-                // Create invoice object
                 hoaDon = new Models.HoaDon()
                 {
                     SoHoaDon = SoHoaDonBox.Text,
@@ -275,7 +227,6 @@ namespace Xd_HTTTQL1
                     DanhSachSanPham = new List<Models.SanPham>(danhSachSanPham)
                 };
 
-                // Display invoice
                 ShowInvoice();
             }
             catch (Exception ex)
@@ -286,7 +237,7 @@ namespace Xd_HTTTQL1
 
         private void LamLaiBtn_Click(object sender, EventArgs e)
         {
-            // Clear all input fields
+            // Clear het du lieu
             SoHoaDonBox.Clear();
             NgayLapHoaDonDate.Value = DateTime.Now;
             KhachHangBox.Clear();
@@ -294,32 +245,24 @@ namespace Xd_HTTTQL1
             DiaChiBox.Clear();
             NhanVienBox.Clear();
 
-            // Clear product inputs
+            // Clear het input
             ClearProductInputs();
 
-            // Clear product list
             danhSachSanPham.Clear();
 
-            // Refresh DataGridView
             RefreshDataGridView();
 
-            // Reset selected index
             indexSelected = -1;
         }
 
-        private void DonHangTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // This can be left empty since we're using CellClick instead
-        }
+   
 
         private void DonHangTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.RowIndex < danhSachSanPham.Count)
             {
-                // Set selected index
                 indexSelected = e.RowIndex;
 
-                // Display selected product in input fields
                 Models.SanPham selectedProduct = danhSachSanPham[indexSelected];
                 SanPhamBox.Text = selectedProduct.TenSanPham;
                 DonGiaBox.Text = selectedProduct.DonGia.ToString();
@@ -337,10 +280,8 @@ namespace Xd_HTTTQL1
 
         private void RefreshDataGridView()
         {
-            // Clear existing rows
             DonHangTable.Rows.Clear();
 
-            // Add rows for each product
             for (int i = 0; i < danhSachSanPham.Count; i++)
             {
                 Models.SanPham sanPham = danhSachSanPham[i];
@@ -353,10 +294,10 @@ namespace Xd_HTTTQL1
                 );
             }
 
-            // Calculate and display total
-            // Assuming you have a label called TongTienLabel
-            // If you don't have this control, comment out or remove these lines
-            int tongTien = danhSachSanPham.Sum(sp => sp.ThanhTien);
+            // Tinh Tong tien
+            // Show ra TriGiaHoaDonBox
+            decimal tongTien = danhSachSanPham.Sum(sp => (decimal)sp.ThanhTien);
+
             if (Controls.Find("TongTienLabel", true).Length > 0)
             {
                 Label TongTienLabel = (Label)Controls.Find("TongTienLabel", true)[0];
@@ -367,7 +308,7 @@ namespace Xd_HTTTQL1
 
         private void ShowInvoice()
         {
-            // Create invoice display message
+            // Tao hoa don va show ra
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("In hoá đơn");

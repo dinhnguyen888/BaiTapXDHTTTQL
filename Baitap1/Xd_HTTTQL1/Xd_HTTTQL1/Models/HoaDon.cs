@@ -21,7 +21,7 @@ namespace Xd_HTTTQL1.Models
             DanhSachSanPham = new List<SanPham>();
         }
 
-        public int TinhTriGia()
+        public decimal TinhTriGia()
         {
             return DanhSachSanPham.Sum(sp => sp.ThanhTien);
         }
